@@ -1,0 +1,392 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* F1 Custom Properties */
+:root {
+  /* F1 Brand Colors */
+  --f1-red: #e10600;
+  --f1-red-dark: #b30500;
+  --f1-red-light: #ff1e00;
+  
+  /* Dark Theme */
+  --f1-gray-900: #0d0d0f;
+  --f1-gray-800: #15151e;
+  --f1-gray-700: #1a1a24;
+  --f1-gray-600: #1f1f27;
+  --f1-gray-500: #2d2d35;
+  --f1-gray-400: #38383f;
+  --f1-gray-300: #4a4a52;
+  
+  /* Accent Colors */
+  --f1-gold: #ffb800;
+  --f1-silver: #c0c0c0;
+  --f1-bronze: #cd7f32;
+  
+  /* Status Colors */
+  --f1-green: #22c55e;
+  --f1-yellow: #fbbf24;
+  --f1-blue: #3b82f6;
+  
+  /* Animations */
+  --anim-duration: 0.3s;
+  --anim-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-f1-gray-800 text-white antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-f1-gray-600;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-f1-gray-400 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-f1-gray-300;
+  }
+}
+
+@layer components {
+  /* F1 Buttons */
+  .f1-button {
+    @apply px-6 py-3 bg-gradient-to-r from-f1-red to-f1-red-light text-white font-bold rounded-lg;
+    @apply transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-f1-red/50;
+    @apply active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+  
+  .f1-button-secondary {
+    @apply px-6 py-3 bg-f1-gray-500 text-white font-semibold rounded-lg border-2 border-f1-gray-400;
+    @apply transform transition-all duration-200 hover:scale-105 hover:bg-f1-gray-400 hover:border-f1-gray-300;
+    @apply active:scale-95;
+  }
+  
+  .f1-button-ghost {
+    @apply px-4 py-2 text-gray-300 font-medium rounded-lg;
+    @apply transition-colors duration-200 hover:bg-f1-gray-500 hover:text-white;
+  }
+  
+  /* F1 Cards */
+  .f1-card {
+    @apply bg-gradient-to-br from-f1-gray-600 to-f1-gray-700 rounded-xl p-6;
+    @apply border border-f1-gray-400 shadow-lg;
+    @apply transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+    @apply hover:border-f1-gray-300;
+  }
+  
+  .f1-card-interactive {
+    @apply f1-card cursor-pointer;
+    @apply hover:shadow-f1-red/20;
+  }
+  
+  /* F1 Panels */
+  .f1-panel {
+    @apply bg-f1-gray-600/95 backdrop-blur-sm rounded-lg border border-f1-gray-400;
+    @apply shadow-xl;
+  }
+  
+  .f1-panel-header {
+    @apply flex items-center justify-between px-4 py-3 border-b border-f1-gray-400;
+    @apply bg-gradient-to-r from-f1-gray-500 to-f1-gray-600;
+  }
+  
+  /* F1 Inputs */
+  .f1-input {
+    @apply px-4 py-2 bg-f1-gray-500 border border-f1-gray-400 rounded-lg;
+    @apply text-white placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-f1-red focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+  
+  /* F1 Badges */
+  .f1-badge {
+    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+  }
+  
+  .f1-badge-position {
+    @apply f1-badge;
+  }
+  
+  .f1-badge-p1 {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900;
+  }
+  
+  .f1-badge-p2 {
+    @apply bg-gradient-to-r from-gray-300 to-gray-400 text-gray-900;
+  }
+  
+  .f1-badge-p3 {
+    @apply bg-gradient-to-r from-amber-600 to-amber-700 text-white;
+  }
+  
+  .f1-badge-default {
+    @apply bg-f1-gray-400 text-gray-200;
+  }
+  
+  /* Racing Stripes */
+  .racing-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+  }
+  
+  /* Glowing Effects */
+  .f1-glow {
+    @apply shadow-lg shadow-f1-red/50;
+  }
+  
+  .f1-glow-green {
+    @apply shadow-lg shadow-green-500/50;
+  }
+  
+  .f1-glow-yellow {
+    @apply shadow-lg shadow-yellow-500/50;
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.5s ease-out;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.5s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.5s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-speed-lines {
+    animation: speedLines 1s linear infinite;
+  }
+  
+  /* Gradient Text */
+  .text-gradient-red {
+    @apply bg-gradient-to-r from-f1-red to-f1-red-light bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes speedLines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100px 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Loading Shimmer Effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--f1-gray-600) 0%,
+    var(--f1-gray-500) 50%,
+    var(--f1-gray-600) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+:root {
+  --f1-red: #E10600;
+  --f1-black: #15151E;
+}
+
+body {
+  @apply bg-f1-gray-600 text-white antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-f1-gray-500;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-f1-gray-300 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-f1-gray-200;
+}
+
+/* F1 styled components */
+@layer components {
+  .f1-card {
+    @apply bg-f1-gray-500 rounded-lg border border-f1-gray-400 shadow-lg;
+  }
+  
+  .f1-button {
+    @apply px-4 py-2 bg-f1-red text-white font-semibold rounded 
+           hover:bg-red-700 transition-colors duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .f1-button-secondary {
+    @apply px-4 py-2 bg-f1-gray-400 text-white font-semibold rounded 
+           hover:bg-f1-gray-300 transition-colors duration-200;
+  }
+  
+  .f1-input {
+    @apply px-3 py-2 bg-f1-gray-500 border border-f1-gray-400 rounded
+           text-white placeholder-gray-500 focus:outline-none 
+           focus:ring-2 focus:ring-f1-red focus:border-transparent;
+  }
+  
+  /* Timing tower styles */
+  .timing-row {
+    @apply flex items-center gap-2 px-3 py-1.5 border-b border-f1-gray-400
+           hover:bg-f1-gray-400 transition-colors cursor-pointer;
+  }
+  
+  .timing-position {
+    @apply w-8 text-center font-bold;
+  }
+  
+  .timing-driver {
+    @apply flex-1 font-semibold;
+  }
+  
+  .timing-gap {
+    @apply text-sm text-gray-400 font-mono;
+  }
+  
+  /* Telemetry gauge */
+  .gauge-bar {
+    @apply h-2 rounded-full transition-all duration-100;
+  }
+}
+
+/* Animation for live updates */
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-flash {
+  animation: flash 0.3s ease-in-out;
+}
+
+/* Track sector colors */
+.sector-purple { color: #A855F7; }
+.sector-green { color: #22C55E; }
+.sector-yellow { color: #EAB308; }
